@@ -24,6 +24,12 @@
     <ClCompile Include="1707_이분_그래프.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_11781_퇴근시간.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1963_소수_경로.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
