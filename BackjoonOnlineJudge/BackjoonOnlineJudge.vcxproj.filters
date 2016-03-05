@@ -30,6 +30,9 @@
     <ClCompile Include="1963_소수_경로.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="9466_텀_프로젝트.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
