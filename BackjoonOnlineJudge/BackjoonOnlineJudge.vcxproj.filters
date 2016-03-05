@@ -33,6 +33,15 @@
     <ClCompile Include="2146_다리_만들기.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_1613_역사.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_1325_효율적인_해킹.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1325_효율적인_해킹.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">

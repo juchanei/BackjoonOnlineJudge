@@ -3,15 +3,16 @@ using namespace std;
 
 int main()
 {
-	int size = 100;
-	cout << size << endl;
+	cout << 10000 << " " << 100000 << endl;
 
-	for (int i = 0; i < size; ++i){
-		for (int j = 0; j < size; j++)
-		{
-			printf("%d ", rand() % 2);
-		}
-		printf("\n");
+	int i;
+	for (i = 1; i < 10000; ++i){
+		printf("%d %d\n", i, i + 1);
+	}
+	for (i; i <= 100000; ++i){
+		int a = rand() % 300 + 1;
+		int b = rand() % (400 - a + 1);
+		printf("%d %d\n", a, a + b);
 	}
 
 	return 0;
