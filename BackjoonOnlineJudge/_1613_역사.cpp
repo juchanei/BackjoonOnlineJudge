@@ -1,102 +1,67 @@
 #include <iostream>
+#include <vector>
 #include <stdio.h>
 using namespace std;
 
-int adjArr[401][401] = { 0, };
-int visited[401] = { 0, };
-int orders[401] = { 0, };
-int branches[401] = { 0, };
-int nNode = 0;
+vector<vector<int> > adjList;
+vector<int> visited;
 
-void init()
+void dfs(int dest, int here, bool& found)
 {
-	for (int i = 0; i < 401; ++i){
-		for (int j = 0; j < 401; ++j)
-		{
-			adjArr[i][j] = 0;
-		}
-		visited[i] = 0;
-		orders[i] = 0;
-		branches[i] = 0;
+	visited.at(here) = 1;
+	if (here == dest){
+		found = true;
+		return;
 	}
-	nNode = 0;
-}
 
-void dfs(int start, int here, int& count, int& branch)
-{
-	visited[here] = start;
-
-	for (int i = 1; i <= nNode; ++i){
-		if (1 == adjArr[here][i] && 0 == visited[i]){
-			dfs(start, i, count, branch);
-		}
-		else if (1 == adjArr[here][i] && start != visited[i] && 0 != visited[i]){
-			count = orders[i] - 1;
-			branch = orders[i];
+	for (int i = 0; i < adjList.at(here).size(); ++i){
+		int next = adjList.at(here).at(i);
+		if (0 == visited.at(next)){
+			dfs(dest, next, found);
+			if (true == found) return;
 		}
 	}
-	++count;
-	orders[here] = count;
-	branches[here] = branch;
 }
 
 int main()
 {
+	int nNode = 0;
 	int nEdge = 0;
 	cin >> nNode >> nEdge;
+
+	adjList = vector<vector<int> >(nNode + 1, vector<int>(0));
 
 	for (int i = 0; i < nEdge; ++i){
 		int nodeA = 0;
 		int nodeB = 0;
-		cin >> nodeA >> nodeB;
-		adjArr[nodeA][nodeB] = 1;
-	}
+		scanf("%d %d", &nodeA, &nodeB);
 
-	int count = 0;
-	int branch = 1;
-	for (int i = 1; i <= nNode; ++i){
-		int outEdge = 0;
-		int inEdge = 0;
-
-		for (int j = 1; j <= nNode; ++j){
-			if (1 == adjArr[i][j]) ++outEdge;
-			if (1 == adjArr[j][i]) ++inEdge;
-		}
-
-		if (0 < outEdge && 0 == inEdge){
-			dfs(i, i, count, branch);
-		}
+		adjList.at(nodeA).push_back(nodeB);
 	}
 
 	int nQuestion = 0;
 	cin >> nQuestion;
 
 	for (int i = 0; i < nQuestion; ++i){
-		int eventA = 0;
-		int eventB = 0;
-		cin >> eventA >> eventB;
+		visited = vector<int>(nNode + 1, 0);
+		int event1 = 0;
+		int event2 = 0;
+		scanf("%d %d", &event1, &event2);
 
-		if (branches[eventA] == branches[eventB]){
-			if (orders[eventA] < orders[eventB]){
-				printf("-1\n");
-			}
-			else if (orders[eventA] < orders[eventB]){
-				printf("1\n");
-			}
-			else{
-				printf("0\n");
-			}
+		bool found = false;
+		dfs(event2, event1, found);
+		if (true == found){
+			printf("-1\n");
+			continue;
 		}
-		else{
-			if (branches[eventA] > orders[eventB]){
-				printf("1\n");
-			}
-			else{
-				printf("0\n");
-			}
+
+		visited = vector<int>(nNode + 1, 0);
+		found = false;
+		dfs(event1, event2, found);
+		if (true == found){
+			printf("1\n");
+			continue;
 		}
+		printf("0\n");
 	}
-
-	init();
-	return 0;
 }
