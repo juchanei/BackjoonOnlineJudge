@@ -63,6 +63,24 @@
     <ClCompile Include="_9466_텀_프로젝트.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="1085_직사가가형에서_탈출.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1110_더하기_사이클.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="2292_벌집.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="5014_면접에_늦었다.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_1655_가운데를_말해요.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_1405_미친_로봇.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
