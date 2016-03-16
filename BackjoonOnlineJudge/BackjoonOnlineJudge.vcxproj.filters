@@ -81,6 +81,12 @@
     <ClCompile Include="_1405_미친_로봇.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="2933_미네랄.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="10273_고대_동굴_탐사.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
