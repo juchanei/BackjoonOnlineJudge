@@ -96,7 +96,16 @@
     <ClCompile Include="_2159_케익_배달.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="2820_자동차_공장.cpp">
+    <ClCompile Include="2933_미네랄.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_2820_자동차_공장.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_2842_집배원_한상덕.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_10273_고대_동굴_탐사.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
