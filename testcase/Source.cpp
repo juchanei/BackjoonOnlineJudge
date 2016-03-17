@@ -1,28 +1,42 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
+int nn = 0;
+
+int power(int a, int b)
+{
+	int ret = 1;
+	for (int i = 0; i < b; i++)
+		ret *= a;
+	return ret;
+}
+
+vector<vector<int> > map;
+
+int cnt = 0;
+void recu(int hereLen, int hereX, int hereY)
+{
+	if (1 == hereLen){
+		++cnt;
+		return;
+	}
+
+	int nextLen = hereLen / 2;
+	int nextX = hereX + nextLen;
+	int nextY = hereY + nextLen;
+
+	recu(nextLen, hereX, hereY);
+	recu(nextLen, nextX, hereY);
+	recu(nextLen, hereX, nextY);
+	recu(nextLen, nextX, nextY);
+}
 
 int main()
 {
-	int n = 500000;
-	int q = 50000;
-	cout << n << " " << q << endl;
-
-	cout << rand() % 100000 + 1 << endl;
-	for (int i = 1; i < n; ++i){
-		printf("%d ", rand() % n + 1);
-		printf("%d\n", rand() % 100000 + 1);
-	}
-
-	for (int i = 1; i < q; ++i){
-		int temp = rand() % 2;
-
-		if (temp == 0){
-			printf("p %d %d\n", rand() % n + 1, rand() % 20000 - 10000);
-		}
-		else if (temp == 1){
-			printf("u %d\n", rand() % n + 1);
-		}
-	}
+	nn = 15;
+	recu(power(2, nn), 0, 0);
+	cout << cnt << endl;
 
 	return 0;
 }

@@ -108,6 +108,9 @@
     <ClCompile Include="_10273_고대_동굴_탐사.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="1074_Z.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
