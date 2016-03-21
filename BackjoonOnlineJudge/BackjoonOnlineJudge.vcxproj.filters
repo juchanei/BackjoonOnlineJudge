@@ -111,6 +111,9 @@
     <ClCompile Include="1074_Z.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_11947_이런_반전이.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">

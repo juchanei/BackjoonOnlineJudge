@@ -30,7 +30,7 @@ void recu(int hereLen, int hereX, int hereY)
 	}
 	else if (xx < nextX && nextY <= yy){
 		result += addSize * 2;
-		recu(nextLen, hereX, nextY);
+		recu(nextLen, hereX, nextY);o
 	}
 	else if (nextX <= xx && nextY <= yy){
 		result += addSize * 3;
