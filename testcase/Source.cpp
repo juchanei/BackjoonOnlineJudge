@@ -1,16 +1,19 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
 int main()
 {
-	int nn = 1000;
-	cout << nn << " " << nn << endl;
-	for (size_t i = 0; i < nn; i++)
+	int h = 1000;
+	int w = 1000;
+	cout << h << " " << w << endl;
+	for (size_t i = 0; i < h; i++)
 	{
-		for (size_t j = 0; j < nn; j++)
+		for (size_t j = 0; j < w; j++)
 		{
-			printf("1 ");
+			cout << 0;
 		}
-		printf("\n");
+		cout << endl;
 	}
 
 	return 0;
