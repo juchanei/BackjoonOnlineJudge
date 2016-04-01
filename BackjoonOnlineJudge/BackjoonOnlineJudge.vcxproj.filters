@@ -183,7 +183,13 @@
     <ClCompile Include="_2266_금고_테스트.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="5431_책_쌓기.cpp">
+    <ClCompile Include="1697_숨바꼭질.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1967_트리의_지름.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="2251_물통.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
