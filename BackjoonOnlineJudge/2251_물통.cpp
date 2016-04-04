@@ -2,32 +2,38 @@
 #include <vector>
 using namespace std;
 
-int aa, bb, cc;
+vector<int> bottle(3, 0);
 vector<vector<vector<int> > > visited;
 vector<int> result;
 
-void foo(int arr[3], int from, int to)
+void pour(vector<int>& currentBottle, int from, int to)
 {
-
+	int toRemain = bottle[to] - currentBottle[to];
+	if (currentBottle[from] <= toRemain) {
+		currentBottle[to] += currentBottle[from];
+		currentBottle[from] = 0;
+	}
+	else if (toRemain < currentBottle[from]) {
+		currentBottle[to] = bottle[to];
+		currentBottle[from] -= toRemain;
+	}
+	return;
 }
 
-void recu(int aa, int bb, int cc)
+void recu(vector<int> bottle)
 {
-	visited[aa][bb][cc] = 1;
-	if (1 == result[cc]) {
-		return;
+	visited[bottle[0]][bottle[1]][bottle[2]] = 1;
+	if (0 == bottle[0]) {
+		result[bottle[2]] = 1;
 	}
 
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < 3; ++j) {
 			if (i != j) {
-				if (0 == visited[aa][bb][cc]) {
-					int arr[3] = { 0, };
-					arr[0] = aa;
-					arr[1] = bb;
-					arr[2] = cc;
-					foo(arr, i, j);
-					recu(arr[0], arr[1], arr[2]);
+				vector<int> nextBottle(bottle);
+				pour(nextBottle, i, j);
+				if (0 == visited[nextBottle[0]][nextBottle[1]][nextBottle[2]]) {
+					recu(nextBottle);
 				}
 			}
 		}
@@ -36,13 +42,15 @@ void recu(int aa, int bb, int cc)
 
 int main()
 {
-	cin >> aa >> bb >> cc;
-	visited.assign(aa + 1, vector<vector<int> >(bb + 1, vector<int>(cc + 1, -1)));
-	result.assign(cc + 1, 0);
+	cin >> bottle[0] >> bottle[1] >> bottle[2];
+	visited.assign(bottle[0] + 1, vector<vector<int> >(bottle[1] + 1, vector<int>(bottle[2] + 1, 0)));
+	result.assign(bottle[2] + 1, 0);
 
-	recu(aa, bb, cc);
+	vector<int> nextBottle(3, 0);
+	nextBottle[2] = bottle[2];
+	recu(nextBottle);
 
-	for (int i = 1; i < result.size(); ++i) {
+	for (int i = 0; i < result.size(); ++i) {
 		if (1 == result[i]) {
 			cout << i << " ";
 		}
