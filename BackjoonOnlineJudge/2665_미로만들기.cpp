@@ -15,32 +15,20 @@ int mapSize;
 vector<vector<int> > map;
 vector<vector<int> > visited;
 
-int minValue = INF;
-void dfs(int x, int y, int count)
+void dfs(int xx, int yy, int count)
 {
-	if (minValue < count) {
-		return;
-	}
-	if (x == mapSize && y == mapSize) {
-		if (count < minValue) {
-			minValue = count;
-		}
-	}
-
-	visited[y][x] = 1;
+	visited[yy][xx] = count;
 
 	for (int i = 0; i < 4; ++i) {
-		if (0 == visited[y + DIR[i][1]][x + DIR[i][0]]) {
-			if (0 == map[y + DIR[i][1]][x + DIR[i][0]]) {
-				dfs(x + DIR[i][0], y + DIR[i][1], count + 1);
+		if (count < visited[yy + DIR[i][1]][xx + DIR[i][0]]){
+			if (1 == map[yy + DIR[i][1]][xx + DIR[i][0]]) {
+				dfs(xx + DIR[i][0], yy + DIR[i][1], count);
 			}
-			else if (1 == map[y + DIR[i][1]][x + DIR[i][0]]) {
-				dfs(x + DIR[i][0], y + DIR[i][1], count);
+			else if (0 == map[yy + DIR[i][1]][xx + DIR[i][0]]) {
+				dfs(xx + DIR[i][0], yy + DIR[i][1], count + 1);
 			}
 		}
 	}
-
-	visited[y][x] = 0;
 }
 
 int main()
@@ -48,7 +36,7 @@ int main()
 	cin >> mapSize;
 
 	map.assign(mapSize + 2, vector<int>(mapSize + 2, -1));
-	visited.assign(mapSize + 2, vector<int>(mapSize + 2, 0));
+	visited.assign(mapSize + 2, vector<int>(mapSize + 2, INF));
 	for (int i = 1; i < map.size() - 1; ++i) {
 		scanf("\n");
 		for (int j = 1; j < map[0].size() - 1; ++j) {
@@ -59,7 +47,8 @@ int main()
 	}
 
 	dfs(1, 1, 0);
-	cout << minValue << endl;
+
+	cout << visited[mapSize][mapSize] << endl;
 
 	return 0;
 }
