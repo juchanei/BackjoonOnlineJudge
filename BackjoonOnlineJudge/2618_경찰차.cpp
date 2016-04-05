@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cstdio>
 using namespace std;
 
 struct Position{
@@ -20,7 +21,7 @@ struct CacheUnit
 const int INF = 987654321;
 
 vector<vector<int> > map;
-vector<Position> events;
+vector<Position> positions;
 vector<vector<CacheUnit > > cache;
 
 int abs(int a)
@@ -28,10 +29,15 @@ int abs(int a)
 	return 0 < a ? a : -a;
 }
 
+int getDistance(int index1, int index2)
+{
+	return abs(positions[index1].x - positions[index2].x) + abs(positions[index1].y - positions[index2].y);
+}
+
 CacheUnit dfs(int car1Index, int car2Index)
 {
 	int eventIndex = car1Index < car2Index? car2Index + 1 : car1Index + 1;
-	if (eventIndex == events.size()) {
+	if (eventIndex == positions.size()) {
 		return CacheUnit(0, 0);
 	}
 
@@ -40,21 +46,15 @@ CacheUnit dfs(int car1Index, int car2Index)
 		return ret;
 	}
 
-	Position car1 = events[car1Index];
-	Position car2 = events[car2Index];
-	Position event = events[eventIndex];
-	int car1EventDistance = abs(event.x - car1.x) + abs(event.y - car1.y);
-	int car2EventDistance = abs(event.x - car2.x) + abs(event.y - car2.y);
-
 	int minValue = INF;
 	int returnValue = 0;
 	int choice = 0;
-	returnValue = dfs(eventIndex, car2Index).ret + car1EventDistance;
+	returnValue = dfs(eventIndex, car2Index).ret + getDistance(eventIndex, car1Index);
 	if (returnValue < minValue) {
 		minValue = returnValue;
 		choice = 1;
 	}
-	returnValue = dfs(car1Index, eventIndex).ret + car2EventDistance;
+	returnValue = dfs(car1Index, eventIndex).ret + getDistance(eventIndex, car2Index);
 	if (returnValue < minValue) {
 		minValue = returnValue;
 		choice = 2;
@@ -72,7 +72,7 @@ void reconstruct(int car1Index, int car2Index)
 	if (-1 == next) {
 		return;
 	}
-	cout << next << endl;
+	printf("%d\n", next);
 
 	if (1 == next) {
 		reconstruct(eventIndex, car2Index);
@@ -88,15 +88,15 @@ int main()
 	cin >> mapSize >> nEvent;
 
 	map.assign(mapSize + 1, vector<int>(mapSize + 1, 0));
-	events.assign(nEvent + 2, Position());
+	positions.assign(nEvent + 2, Position());
 	cache.assign(nEvent + 2, vector<CacheUnit>(nEvent + 2, CacheUnit()));
 
-	events[0] = Position(1, 1);
-	events[1] = Position(mapSize, mapSize);
-	for (int i = 2; i < events.size(); ++i) {
+	positions[0] = Position(1, 1);
+	positions[1] = Position(mapSize, mapSize);
+	for (int i = 2; i < positions.size(); ++i) {
 		int xx, yy;
-		cin >> xx >> yy;
-		events[i] = Position(xx, yy);
+		scanf("%d %d\n", &xx, &yy);
+		positions[i] = Position(xx, yy);
 	}
 
 	cout << dfs(0, 1).ret << endl;
