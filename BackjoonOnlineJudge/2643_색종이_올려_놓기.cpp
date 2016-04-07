@@ -19,21 +19,18 @@ int dfs(const int paperIndex, const int prePaperIndex)
 	if (paperIndex == papers.size()) {
 		return 0;
 	}
-
 	int& ret = cache[paperIndex][prePaperIndex];
 	if (-1 != ret) {
 		return ret;
 	}
-
 	int maxValue = 0;
-	if (papers[paperIndex].first <= papers[prePaperIndex].first &&
-		papers[paperIndex].second <= papers[prePaperIndex].second) {
+	maxValue = max(maxValue, dfs(paperIndex + 1, prePaperIndex));		//not selected
+	if (papers[paperIndex].second <= papers[prePaperIndex].second) {
 		maxValue = max(maxValue, dfs(paperIndex + 1, paperIndex) + 1);	//selected
 	}
-	maxValue = max(maxValue, dfs(paperIndex + 1, prePaperIndex));		//not selected
 
 	ret = maxValue;
-	return ret;
+	return maxValue;
 }
 
 int main()
@@ -42,7 +39,6 @@ int main()
 	cin >> nPaper;
 
 	cache.assign(nPaper + 1, vector<int>(nPaper + 1, -1));
-
 	papers.assign(nPaper + 1, pair<int, int>());
 	papers[0].first = INF;
 	papers[0].second = INF;
@@ -62,6 +58,5 @@ int main()
 	sort(papers.begin(), papers.end(), greater<pair<int, int> >());
 
 	cout << dfs(1, 0) << endl;
-
 	return 0;
 }

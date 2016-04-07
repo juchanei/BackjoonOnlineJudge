@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <vector>
 using namespace std;
 
@@ -23,26 +24,11 @@ int dfs(int questionIndex, int doorA, int doorB)
 		return ret;
 	}
 
-	if (doorB < doorA) {
-		int temp = doorA;
-		doorA = doorB;
-		doorB = temp;
-	}
-
 	int target = questions[questionIndex];
-
 	int minValue = INF;
-	if (target <= doorA) {
-		minValue = min(minValue, dfs(questionIndex + 1, target, doorB) + doorA - target);
-	}
-	else if (doorA < target && target < doorB) {
-		minValue = min(minValue, dfs(questionIndex + 1, target, doorB) + target - doorA);
-		minValue = min(minValue, dfs(questionIndex + 1, doorA, target) + doorB - target);
-	}
-	else if (doorB <= target) {
-		minValue = min(minValue, dfs(questionIndex + 1, doorA, target) + target - doorB);
-	}
-	
+	minValue = min(minValue, dfs(questionIndex + 1, target, doorB) + abs(target - doorA));
+	minValue = min(minValue, dfs(questionIndex + 1, doorA, target) + abs(doorB - target));
+
 	ret = minValue;
 	return ret;
 }
