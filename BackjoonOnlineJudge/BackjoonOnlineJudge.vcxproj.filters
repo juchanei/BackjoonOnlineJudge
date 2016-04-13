@@ -297,6 +297,24 @@
     <ClCompile Include="1357_뒤집힌_덧셈.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="11726_2xn_타일링.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1520_내리막_길.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_2096_내려가기.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="10844_쉬운_계단_수.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="11053_가장_긴_증가하는_부분_수열.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="11727_2xn_타일링_2.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="1904_01타일.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>

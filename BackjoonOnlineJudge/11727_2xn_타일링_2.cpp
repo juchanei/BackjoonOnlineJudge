@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-const int MOD = 15746;
+const int MOD = 10007;
 int length;
 vector<int> cache;
 
@@ -21,7 +21,10 @@ int recu(int here)
 
 	int sum = 0;
 	sum += recu(here + 1) % MOD;
-	sum += recu(here + 2) % MOD;
+	int temp = recu(here + 2) % MOD;
+	sum += temp;
+	sum %= MOD;
+	sum += temp;
 	sum %= MOD;
 
 	ret = sum;
