@@ -37,35 +37,34 @@ int bfs()
 			return here.count;
 		}
 
-		//부시지 않고 진입
-		for (int i = 0; i < 4; ++i){
-			if (0 == map[here.yy + DIR[i][1]][here.xx + DIR[i][0]]){
+		for (int i = 0; i < 4; ++i) {
+			int nextx = here.xx + DIR[i][0];
+			int nexty = here.yy + DIR[i][1];
+
+			//부시지 않고 진입
+			if (0 == map[nexty][nextx]){
 				if (true == here.breakWall){
 					//부실 수 있는 상태일 때 visited가 1만 아니면 모두 진입
-					if (1 != visited[here.yy + DIR[i][1]][here.xx + DIR[i][0]]){
-						Node next(here.xx + DIR[i][0], here.yy + DIR[i][1], here.count + 1, here.breakWall);
+					if (1 != visited[nexty][nextx]){
+						Node next(nextx, nexty, here.count + 1, here.breakWall);
 						qq.push(next);
 						visited[next.yy][next.xx] = 1;
 					}
 				}
 				else{
 					//부실 수 없는 상태일 때 visited가 0인 경우에만 진입
-					if (0 == visited[here.yy + DIR[i][1]][here.xx + DIR[i][0]]){
-						Node next(here.xx + DIR[i][0], here.yy + DIR[i][1], here.count + 1, here.breakWall);
+					if (0 == visited[nexty][nextx]){
+						Node next(nextx, nexty, here.count + 1, here.breakWall);
 						qq.push(next);
 						visited[next.yy][next.xx] = 2;
 					}
 				}
 			}
-		}
-
-		//부시고 진입
-		for (int i = 0; i < 4; ++i){
 			//진입할 곳이 벽이고 부실 수 있는 상태에만 진입
-			if (1 == map[here.yy + DIR[i][1]][here.xx + DIR[i][0]]){
-				if (true == here.breakWall){
-					if (0 == visited[here.yy + DIR[i][1]][here.xx + DIR[i][0]]){
-						Node next(here.xx + DIR[i][0], here.yy + DIR[i][1], here.count + 1, false);
+			if (1 == map[nexty][nextx]) {
+				if (true == here.breakWall) {
+					if (0 == visited[nexty][nextx]) {
+						Node next(nextx, nexty, here.count + 1, false);
 						qq.push(next);
 						visited[next.yy][next.xx] = 2;
 					}
